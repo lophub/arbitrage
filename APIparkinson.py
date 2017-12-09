@@ -63,10 +63,6 @@ Type 'end' to close the program.
 		elif usr_input == 'end':
 			break
 		
-		
-crypto_polo()
+
+
 main()
-#crypto_polo()
-
-
-
