@@ -2,7 +2,6 @@ import requests
 import json
 
 
-
 polo_link = requests.get('https://poloniex.com/public?command=returnTicker')
 polo_data = json.loads(polo_link.text)
 
@@ -35,7 +34,8 @@ def trex_polo():
 			trex_last = trex_ticker['Last']
 			polo_last = polo_data[key]['last']
 			spread(trex_last, polo_last, 'Trex', 'Polo', key)
-				
+
+
 def crypto_polo():
 	for crypto_ticker in crypto_data:
 		keyArr = crypto_ticker['Label'].split('/')
@@ -44,21 +44,29 @@ def crypto_polo():
 			crypto_last = crypto_ticker['LastPrice']
 			polo_last = polo_data[key]['last']
 			spread(crypto_last, polo_last, 'Crypto', 'Polo', key)
+
 			
 			
 def main():
 	while True:
-		usr_input = input('''
-		Hello. 
-		Choose '1' for the spread of Bittrex and Poloniex.
-		Choose '2' for the spread of Cryptopia and Poloniex.
-		''')
+		usr_input = input('''	
+Hello. 
+Choose '1' for the spread of Bittrex and Poloniex.
+Choose '2' for the spread of Cryptopia and Poloniex.
+Type 'end' to close the program.
+
+>> ''')
 		if usr_input == '1':
 			trex_polo()
+		elif usr_input == '2':
+			crypto_polo()
+		elif usr_input == 'end':
+			break
 		
 		
-#main()
 crypto_polo()
+main()
+#crypto_polo()
 
 
 
